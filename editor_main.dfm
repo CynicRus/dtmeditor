@@ -5,8 +5,8 @@ object DtmForm: TDtmForm
   ClientHeight = 822
   ClientWidth = 1015
   Color = clBtnFace
-  Constraints.MinHeight = 880
-  Constraints.MinWidth = 1031
+  Constraints.MinHeight = 720
+  Constraints.MinWidth = 640
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -221,7 +221,16 @@ object DtmForm: TDtmForm
     Top = 803
     Width = 1015
     Height = 19
-    Panels = <>
+    Panels = <
+      item
+        Width = 80
+      end
+      item
+        Width = 80
+      end
+      item
+        Width = 50
+      end>
   end
   object GroupBox1: TGroupBox
     Left = 762
@@ -574,7 +583,7 @@ object DtmForm: TDtmForm
     Left = 448
     Top = 336
     Bitmap = {
-      494C01010C0018005C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010C001800600010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

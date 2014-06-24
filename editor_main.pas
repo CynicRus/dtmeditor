@@ -500,6 +500,9 @@ begin
   BMP:=DTMEditor.CurrentBitmap;
   Color:=Bmp.FastGetPixel(X,y);
   Bmp.ToBMP(Bitmap);
+
+  StatusBar1.Panels.Items[0].Text := IntToStr(X)+':'+IntToStr(Y);
+  StatusBar1.Panels.Items[1].Text := IntToStr(Color);
   //Color:=bmp.Canvas.Pixels[x,y];
 // Color:=0;
 // Client.MBitmaps.GetBMP(i).FastSetPixel(x,y,Color);
@@ -582,8 +585,16 @@ begin
     if (Picker.Handle <=0) then
      exit;
     Bitmap:=TDTMBitmap.Create;
+    try
     Catcher.TargetHandle:=DTMEditor.Picker.Handle;
     Catcher.GetScreenShot;
+    except
+     on E: Exception do
+      begin
+        Catcher.TargetHandle:=GetDesktopWindow;
+        Catcher.GetScreenShot;
+      end;
+    end;
     Bitmap.LoadFromBitmap(DTMEditor.Catcher.Bitmap);
     AddBitmap(Bitmap);
   end;
