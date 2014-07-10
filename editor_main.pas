@@ -68,12 +68,12 @@ type
     ToolButton16: TToolButton;
     ToolButton17: TToolButton;
     ToolButton18: TToolButton;
-    Shape1: TShape;
     DDTimer: TTimer;
     Button2: TButton;
     Button3: TButton;
     ColorSelector: TJvColorComboBox;
     DeleteDTMbtn: TButton;
+    img1: TImage;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure ToolButton7MouseDown(Sender: TObject; Button: TMouseButton;
@@ -487,11 +487,26 @@ end;
 
 procedure TDtmForm.RenderMouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
+
+function GetOptimalBkColor(AColor: TColor): TColor;
+var
+  R, G, B: Word;
+begin
+  R := GetRValue(AColor);
+  G := GetGValue(AColor);
+  B := GetBValue(AColor);
+if 0.222*R + 0.707*G + 0.071*B <= 127 then
+  Result := clWhite
+else
+  Result := clBlack;
+end;
+
 var
   Color: Integer;
   i: integer;
   Bmp: TDTMBitmap;
   Bitmap: TBitmap;
+  CurrentText: string;
 begin
   if (imglistbox.ItemIndex = -1) then
    exit;
@@ -507,7 +522,15 @@ begin
 // Color:=0;
 // Client.MBitmaps.GetBMP(i).FastSetPixel(x,y,Color);
 // BitmapToRender(i);
-  Shape1.Brush.Color := Color;
+  with img1.Canvas do
+  begin
+    Brush.Color := Color;
+    FillRect(ClipRect);
+    Font.Color := GetOptimalBkColor(Color);
+    Font.Style := [fsBold];
+    Font.Height := 12;
+    TextOut(Canvas.PenPos.X, Canvas.PenPos.Y, 'Color: '+IntToStr(Color));
+  end;
   with PixelImage.Canvas do
       begin
         Pen.Color := clBlack;
@@ -522,6 +545,8 @@ begin
         Pen.Color := clRed;
         Rectangle(38, 38, 62, 62);
       end;
+ //DrawText(Shape1, Text ,length(Text),rect, dt_Left);
+   //TextOut(Shape1.);
   //Client.MBitmaps.GetBMP(imglistbox.ItemIndex).FastGetPixel(x,y);
  Bitmap.Free;
 

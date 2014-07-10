@@ -751,13 +751,17 @@ var
    ctsinfoarray: TCTSInfoArray;
    compare: TCTSCompareFunction;
 
+    BMP: TDTMBitmap;
+
    label theEnd;
    label AnotherLoopEnd;
+
 
 begin
   pc:=0;
   // Is the area valid?
  // DefaultOperations(x1, y1, x2, y2);
+  SetLength(FClientTPA,0);
 
   // Get the area we should search in for the Main Point.
   MA := ValidMainPointBox(DTM, x1, y1, x2, y2);
@@ -784,7 +788,7 @@ begin
 
   SetLength(col_arr, Len);
   SetLength(tol_arr, Len);
-  // C = DTM.C
+
   for i := 0 to Len - 1 do
   begin
     col_arr[i] := DTM.Points[i].color;
@@ -795,18 +799,21 @@ begin
   compare := Get_CTSCompare(Self.CTS);
 
  // cd := CalculateRowPtrs(Target);
+
+  BMP:=Target.CopyBitmap(x1,y1,x2,y2);
+  UpdateCachedValues(BMP.Width,BMP.Height);
   //CD starts at 0,0.. We must adjust the MA, since this is still based on the xs,ys,xe,ye box.
-  MA.x1 := MA.x1 - x1;
-  MA.y1 := MA.y1 - y1;
-  MA.x2 := MA.x2 - x1;
-  MA.y2 := MA.y2 - y1;
+  MA.x1 :=  x1;
+  MA.y1 :=  y1;
+  MA.x2 :=  x2;
+  MA.y2 :=  y2;
 
   MaxX := x2-x1;
   MaxY := y2-y1;
   //MA is now fixed to the new (0,0) box...
 
-  for yy := MA.y1  to MA.y2  do //Coord of the mainpoint in the search area
-    for xx := MA.x1  to MA.x2 do
+  for yy := MA.y1  to MA.y2 - 1  do //Coord of the mainpoint in the search area
+    for xx := MA.x1  to MA.x2 - 1 do
     begin
       //Mainpoint can have area size as well, so we must check that just like any subpoint.
       for i := 0 to Len - 1 do
@@ -826,7 +833,7 @@ begin
             begin
               // Checking point i now. (Store that we matched it)
               ch[xxx][yyy]:= ch[xxx][yyy] or (1 shl i);
-              if compare(ctsinfoarray[i], Target.ScanLine[yyy]^[xxx]) then
+              if compare(ctsinfoarray[i], BMP.ScanLine[yyy]^[xxx]) then
                 b[xxx][yyy] := b[xxx][yyy] or (1 shl i);
             end;
 
@@ -848,14 +855,14 @@ begin
           goto AnotherLoopEnd;
       end;
       //We survived the sub-point search, add this mainpoint to the results.
-      ClientTPA[pc] := Point(xx + x1, yy + y1);
+      ClientTPA[pc] := Point(xx + 3, yy + 2);
       Inc(pc);
       if(pc = maxToFind) then
         goto theEnd;
       AnotherLoopEnd:
     end;
   TheEnd:
-
+  BMP.Free;
   Free_CTSInfoArray(ctsinfoarray);
   //TClient(Client).IOManager.FreeReturnData;
 
