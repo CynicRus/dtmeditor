@@ -13,7 +13,6 @@ type
     { Private declarations }
   public
     procedure ShowFindResult(B: TDTMBitmap);
-    { Public declarations }
   end;
 
 var
@@ -24,6 +23,8 @@ implementation
 {$R *.dfm}
 
 { TDTMResultForm }
+
+
 
 procedure TDTMResultForm.ShowFindResult(B: TDTMBitmap);
 begin

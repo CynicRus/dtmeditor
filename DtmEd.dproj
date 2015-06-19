@@ -1,11 +1,11 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{DD8FDB31-F14A-4A4C-AB94-103FB195DBFD}</ProjectGuid>
-        <ProjectVersion>14.3</ProjectVersion>
+        <ProjectVersion>16.0</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <MainSource>DtmEd.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -40,6 +40,7 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
+        <SanitizedProjectName>DtmEd</SanitizedProjectName>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
@@ -52,7 +53,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
-        <DCC_UsePackage>IndyIPClient;JvGlobus;JvMM;JvManagedThreads;SVCL140;DBXSqliteDriver;SepiCore140;JvDlgs;IndySystem;JvCrypt;TeeDB;inetdbbde;vclib;DBXInterBaseDriver;DataSnapClient;DataSnapCommon;DataSnapServer;JvNet;DataSnapProviderClient;JvDotNetCtrls;DBXSybaseASEDriver;DbxCommonDriver;vclimg;dbxcds;MetropolisUILiveTile;JvXPCtrls;vcldb;vcldsnap;DBXDb2Driver;DBXOracleDriver;CustomIPTransport;JvCore;vclribbon;dsnap;IndyIPServer;IndyCore;vcl;DBXMSSQLDriver;CloudService;IndyIPCommon;JvAppFrm;JvDB;JvRuntimeDesign;inetdbxpress;webdsnap;JclDeveloperTools;JvDocking;adortl;JvWizards;JvHMI;bindcompfmx;JvBands;vcldbx;Python_2010;rtl;dbrtl;DbxClientDriver;bindcomp;inetdb;JvPluginSystem;Tee;JclContainers;DBXOdbcDriver;JvCmp;pax_delphi_xe3;JvSystem;xmlrtl;svnui;ibxpress;JvTimeFramework;JvControls;IndyProtocols;DBXMySQLDriver;bindengine;vclactnband;bindcompdbx;soaprtl;TeeUI;JvJans;bindcompvcl;JvStdCtrls;JvCustom;Jcl;vclie;JvPageComps;JvPrintPreview;SDL140;vcltouch;websnap;VclSmp;DBXInformixDriver;Intraweb;DataSnapConnectors;DBXFirebirdDriver;dsnapcon;inet;SynEdit_RXE3;JclVcl;JvPascalInterpreter;vclx;svn;DBXSybaseASADriver;bdertl;dbexpress;DataSnapIndy10ServerTransport;JvBDE;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>IndyIPClient;JvGlobus;JvMM;JvManagedThreads;SVCL140;DBXSqliteDriver;SepiCore140;JvDlgs;IndySystem;JvCrypt;TeeDB;inetdbbde;vclib;DBXInterBaseDriver;DataSnapClient;DataSnapCommon;DataSnapServer;JvNet;DataSnapProviderClient;JvDotNetCtrls;DBXSybaseASEDriver;DbxCommonDriver;vclimg;dbxcds;MetropolisUILiveTile;JvXPCtrls;vcldb;vcldsnap;DBXDb2Driver;DBXOracleDriver;CustomIPTransport;JvCore;vclribbon;dsnap;IndyIPServer;IndyCore;vcl;DBXMSSQLDriver;CloudService;IndyIPCommon;JvAppFrm;JvDB;JvRuntimeDesign;inetdbxpress;webdsnap;JclDeveloperTools;JvDocking;adortl;JvWizards;JvHMI;bindcompfmx;JvBands;vcldbx;Python_2010;rtl;dbrtl;DbxClientDriver;bindcomp;inetdb;JvPluginSystem;Tee;DBXOdbcDriver;JvCmp;pax_delphi_xe3;JvSystem;xmlrtl;svnui;ibxpress;JvTimeFramework;JvControls;IndyProtocols;DBXMySQLDriver;bindengine;vclactnband;bindcompdbx;soaprtl;TeeUI;JvJans;bindcompvcl;JvStdCtrls;JvCustom;Jcl;vclie;JvPageComps;JvPrintPreview;SDL140;vcltouch;websnap;VclSmp;DBXInformixDriver;Intraweb;DataSnapConnectors;DBXFirebirdDriver;dsnapcon;inet;SynEdit_RXE3;JclVcl;JvPascalInterpreter;vclx;svn;DBXSybaseASADriver;bdertl;dbexpress;DataSnapIndy10ServerTransport;JvBDE;$(DCC_UsePackage)</DCC_UsePackage>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
@@ -70,13 +71,15 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
         <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
-        <DCC_DebugInformation>false</DCC_DebugInformation>
+        <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
@@ -86,7 +89,6 @@
             <Form>DtmForm</Form>
         </DCCReference>
         <DCCReference Include="Core\DTM_Bitmaps.pas"/>
-        <DCCReference Include="Delphi_MML\misc\DCPBase64.pas"/>
         <DCCReference Include="Core\DTM_Structure.pas"/>
         <DCCReference Include="Core\DTM_HandlePicker.pas"/>
         <DCCReference Include="Core\DTM_ImageCatcher.pas"/>
@@ -101,6 +103,7 @@
             <Form>DTMResultForm</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Core\DCPBase64.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -156,6 +159,19 @@
                 <Source>
                     <Source Name="MainSource">DtmEd.dpr</Source>
                 </Source>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\15.0\BPL\JclBaseExpert210.bpl">JCL Package containing common units for JCL Experts</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\15.0\BPL\JclDebugExpert210.bpl">JCL Debug IDE extension</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\15.0\BPL\JclProjectAnalysisExpert210.bpl">JCL Project Analyzer</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\15.0\BPL\JclFavoriteFoldersExpert210.bpl">JCL Open and Save IDE dialogs with favorite folders</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\15.0\BPL\JclRepositoryExpert210.bpl">JCL Package containing repository wizards</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\15.0\BPL\JclSIMDViewExpert210.bpl">JCL Debug Window of XMM registers</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\15.0\BPL\JclStackTraceViewerExpert210.bpl">JCL Stack Trace Viewer</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k210.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp210.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k210.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp210.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                </Excluded_Packages>
             </Delphi.Personality>
             <Deployment/>
             <Platforms>

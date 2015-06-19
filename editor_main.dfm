@@ -2,8 +2,8 @@ object DtmForm: TDtmForm
   Left = 0
   Top = 0
   Caption = 'Another DTM Editor by Cynic'
-  ClientHeight = 822
-  ClientWidth = 1015
+  ClientHeight = 692
+  ClientWidth = 1008
   Color = clBtnFace
   Constraints.MinHeight = 720
   Constraints.MinWidth = 640
@@ -20,14 +20,14 @@ object DtmForm: TDtmForm
   OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   DesignSize = (
-    1015
-    822)
+    1008
+    692)
   PixelsPerInch = 96
   TextHeight = 13
   object ActBar: TToolBar
     Left = 0
     Top = 0
-    Width = 1015
+    Width = 1008
     Height = 26
     Caption = 'ActBar'
     Images = ImgList
@@ -202,8 +202,8 @@ object DtmForm: TDtmForm
   object ScrollBox1: TScrollBox
     Left = 0
     Top = 32
-    Width = 764
-    Height = 769
+    Width = 757
+    Height = 639
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 1
     OnClick = NotImplementedClick
@@ -218,22 +218,22 @@ object DtmForm: TDtmForm
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 803
-    Width = 1015
+    Top = 673
+    Width = 1008
     Height = 19
     Panels = <
       item
         Width = 80
       end
       item
-        Width = 80
+        Width = 120
       end
       item
         Width = 50
       end>
   end
   object GroupBox1: TGroupBox
-    Left = 762
+    Left = 755
     Top = 24
     Width = 253
     Height = 118
@@ -254,21 +254,21 @@ object DtmForm: TDtmForm
     end
   end
   object GroupBox2: TGroupBox
-    Left = 762
+    Left = 755
     Top = 136
     Width = 253
-    Height = 217
+    Height = 87
     Anchors = [akTop, akRight, akBottom]
     Caption = 'List of images:'
     TabOrder = 4
     DesignSize = (
       253
-      217)
+      87)
     object ImgListBox: TListBox
       Left = 8
       Top = 12
       Width = 237
-      Height = 190
+      Height = 60
       Anchors = [akLeft, akTop, akBottom]
       ItemHeight = 13
       TabOrder = 0
@@ -277,8 +277,8 @@ object DtmForm: TDtmForm
     end
   end
   object GroupBox3: TGroupBox
-    Left = 762
-    Top = 344
+    Left = 755
+    Top = 214
     Width = 253
     Height = 457
     Anchors = [akRight, akBottom]
@@ -486,57 +486,6 @@ object DtmForm: TDtmForm
       Top = 327
       Width = 97
       Height = 20
-      ColorNameMap.Strings = (
-        'clBlack=Black'
-        'clMaroon=Maroon'
-        'clGreen=Green'
-        'clOlive=Olive green'
-        'clNavy=Navy blue'
-        'clPurple=Purple'
-        'clTeal=Teal'
-        'clGray=Gray'
-        'clSilver=Silver'
-        'clRed=Red'
-        'clLime=Lime'
-        'clYellow=Yellow'
-        'clBlue=Blue'
-        'clFuchsia=Fuchsia'
-        'clAqua=Aqua'
-        'clWhite=White'
-        'clMoneyGreen=Money green'
-        'clSkyBlue=Sky blue'
-        'clCream=Cream'
-        'clMedGray=Medium gray'
-        'clScrollBar=Scrollbar'
-        'clBackground=Desktop background'
-        'clActiveCaption=Active window title bar'
-        'clInactiveCaption=Inactive window title bar'
-        'clMenu=Menu background'
-        'clWindow=Window background'
-        'clWindowFrame=Window frame'
-        'clMenuText=Menu text'
-        'clWindowText=Window text'
-        'clCaptionText=Active window title bar text'
-        'clActiveBorder=Active window border'
-        'clInactiveBorder=Inactive window border'
-        'clAppWorkSpace=Application workspace'
-        'clHighlight=Selection background'
-        'clHighlightText=Selection text'
-        'clBtnFace=Button face'
-        'clBtnShadow=Button shadow'
-        'clGrayText=Dimmed text'
-        'clBtnText=Button text'
-        'clInactiveCaptionText=Inactive window title bar text'
-        'clBtnHighlight=Button highlight'
-        'cl3DDkShadow=Dark shadow 3D elements'
-        'cl3DLight=Highlight 3D elements'
-        'clInfoText=Tooltip text'
-        'clInfoBk=Tooltip background'
-        'clGradientActiveCaption=Gradient Active Caption'
-        'clGradientInactiveCaption=Gradient Inactive Caption'
-        'clHotLight=Hot Light'
-        'clMenuBar=Menu Bar'
-        'clMenuHighlight=Menu Highlight')
       ColorDialogText = 'Custom...'
       DroppedDownWidth = 97
       NewColorText = 'Custom'
@@ -583,7 +532,7 @@ object DtmForm: TDtmForm
     Left = 448
     Top = 336
     Bitmap = {
-      494C01010C001800640010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010C0018006C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
