@@ -273,17 +273,8 @@ begin
       if Finder.FindDTMs(DTM, p1, 0, 0, CurrentBitmap.Width - 1,
         CurrentBitmap.Height - 1) then
       begin
-        for i := 0 to High(p1) do
-          p2 := CombineTPA(p2,
-            CombineTPA(GetLine(Point(Max(Min(p1[i].x - 4,
-            CurrentBitmap.Width - 1), 0), Max(Min(p1[i].y - 4,
-            CurrentBitmap.Height - 1), 0)),
-            Point(Max(Min(p1[i].x + 4, CurrentBitmap.Width - 1), 0),
-            Max(Min(p1[i].y + 4, CurrentBitmap.Height - 1), 0))),
-            GetLine(Point(Max(Min(p1[i].x - 4, CurrentBitmap.Width - 1), 0),
-            Max(Min(p1[i].y + 4, CurrentBitmap.Height - 1), 0)),
-            Point(Max(Min(p1[i].x + 4, CurrentBitmap.Width - 1), 0),
-            Max(Min(p1[i].y - 4, CurrentBitmap.Height - 1), 0)))));
+        p2 := TPAFromCircle(p1[i].x, p1[i].y, 4);
+        FillEllipse(p2);
       end;
       Res[j] := p2;
     finally
@@ -303,11 +294,10 @@ end;
 
 procedure TDTMEditor.FindDTM;
 var
-  p1, p2: TPointArray;
-  i: integer;
+  p,p1, p2: TPointArray;
+  i,j: integer;
   B: TDTMBitmap;
   DTM: TDTMS;
-  Box: TBox;
 begin
   if not Assigned(CurrentBitmap) or not Assigned(CurrentDTM) or
     (CurrentDTM.Points.Count <= 1) then
@@ -319,31 +309,14 @@ begin
     if Finder.FindDTMs(DTM, p1, 0, 0, CurrentBitmap.Width - 1,
       CurrentBitmap.Height - 1) then
     begin
-    B := CurrentBitmap.CopyBitmap;
+      B := CurrentBitmap.CopyBitmap;
       for i := 0 to High(p1) do
-       begin
-        //P2:=CombineTPA(p2, TPAFromCircle(P1[i].X,P1[i].Y,4));
-        //P2:=TPAFromCircle(P1[i].X,P1[i].Y,4);
-        Box:= GetTPABounds(TPAFromCircle(P1[i].X,P1[i].Y,4));
-        DrawAntialisedLine(b,Box.y2,Box.x1,Box.y1,Box.x2,CurrentDTM.DrawColor);
-       // DrawAntialisedLine(b,Box.x2 + 2,Box.y1 + 2,Box.x1 - 2,Box.y2 - 2 ,CurrentDTM.DrawColor);
-
-       end;
-        {p2 := CombineTPA(p2,
-          CombineTPA(GetLine(Point(Max(Min(p1[i].x - 4,
-          CurrentBitmap.Width - 1), 0), Max(Min(p1[i].y - 4,
-          CurrentBitmap.Height - 1), 0)),
-          Point(Max(Min(p1[i].x + 4, CurrentBitmap.Width - 1), 0),
-          Max(Min(p1[i].y + 4, CurrentBitmap.Height - 1), 0))),
-          GetLine(Point(Max(Min(p1[i].x - 4, CurrentBitmap.Width - 1), 0),
-          Max(Min(p1[i].y + 4, CurrentBitmap.Height - 1), 0)),
-          Point(Max(Min(p1[i].x + 4, CurrentBitmap.Width - 1), 0),
-          Max(Min(p1[i].y - 4, CurrentBitmap.Height - 1), 0)))));}
-
-
-      {for i := 0 to Length(p2) - 1 do
-        B.FastSetColor(p2[i].x, p2[i].y, CurrentDTM.DrawColor);}
-      // AddBitmap(B);{temporary}
+      begin
+        p := TPAFromCircle(p1[i].x, p1[i].y, 4);
+        FillEllipse(p);
+        for j:= 0 to Length(p)-1 do
+            B.FastSetColor(p[j].x, p[j].y, CurrentDTM.DrawColor);
+      end;
       FShowResultForm.ShowFindResult(B);
     end;
   finally

@@ -528,7 +528,7 @@ begin
   Bmp.ToBMP(Bitmap);
 
   StatusBar1.Panels.Items[0].Text := IntToStr(X) + ':' + IntToStr(Y);
-  StatusBar1.Panels.Items[1].Text := IntToStr(Color) + ':' + IntToStr(Bitmap.Canvas.Pixels[x,y]);
+  StatusBar1.Panels.Items[1].Text := IntToStr(Color);
   // Color:=bmp.Canvas.Pixels[x,y];
   // Color:=0;
   // Client.MBitmaps.GetBMP(i).FastSetPixel(x,y,Color);
